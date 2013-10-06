@@ -1,0 +1,23 @@
+
+%p
+  %b ユーザ:
+  = render partial: '/layouts/user_icon', locals: { user: @item.user, size: "18x18", klass: "margin_minus2" }
+%p
+  %b コンテンツ名:
+  = @item.name
+%p
+  %b カテゴリ:
+  = @item.category.try(:name)
+/ %p
+/   %b Content:
+/   = @item.content
+%p
+  %b 評価:
+  = @item.star_display
+%p
+  %b 完了日:
+  = @item.done_date.strftime("%Y年%m月%d日 %H:%M") if @item.done_date.present?
+
+= link_to '編集', edit_item_path(@item)
+\|
+= link_to '一覧', items_path

@@ -1,4 +1,6 @@
 Threestars::Application.routes.draw do
+  resources :items
+
   root to: 'top#index'
 
   # For OmniAuth

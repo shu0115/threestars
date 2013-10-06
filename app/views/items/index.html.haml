@@ -1,0 +1,29 @@
+%h1 コンテンツ履歴一覧
+
+%table
+  %tr
+    %th ユーザ
+    %th カテゴリ
+    / %th Content
+    %th 評価
+    %th コンテンツ名
+    %th 完了日
+    %th
+    %th
+    %th
+
+  - @items.each do |item|
+    %tr
+      %td= render partial: '/layouts/user_icon', locals: { user: item.user, size: "18x18", klass: "margin_minus2" }
+      %td= item.category.try(:name)
+      / %td= item.content
+      %td= item.star_display
+      %td= item.name
+      %td= item.done_date.strftime("%Y年%m月%d日 %H:%M") if item.done_date.present?
+      %td= link_to '詳細', item
+      %td= link_to '編集', edit_item_path(item)
+      %td= link_to '削除', item, method: :delete, data: { confirm: "「#{item.name}」を削除します。よろしいですか？" }
+
+%br
+
+= link_to '新規作成', new_item_path
