@@ -18,7 +18,8 @@
       %td= item.category.try(:name)
       / %td= item.content
       %td= item.star_display
-      %td= item.name
+      / %td= item.name
+      %td= link_to item.name, "http://www.amazon.co.jp/s/ref=nb_sb_noss_2?__mk_ja_JP=カタカナ&url=search-alias%3Daps&field-keywords=#{item.name}&at=#{Settings.amazon_affiliate_id}", target: '_blank'
       %td= item.done_date.strftime("%Y年%m月%d日 %H:%M") if item.done_date.present?
       %td= link_to '詳細', item
       %td= link_to '編集', edit_item_path(item)
