@@ -2,10 +2,10 @@
 
 %table
   %tr
-    %th{ colspan: Category.where(nil).length + 1 } カテゴリ
+    %th{ colspan: Category.all.length + 1 } カテゴリ
   %tr
     %td= link_to 'すべて', items_path(category_id: nil, star: @star)
-    - Category.where(nil).each do |category|
+    - Category.all.each do |category|
       %td= link_to_unless (@category_id == category.id.to_s), category.name, items_path(category_id: category.id, star: @star)
 %br
 

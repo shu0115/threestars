@@ -23,3 +23,6 @@ star:
 
 # アマゾンアフィリエイトID
 amazon_affiliate_id: 'shu0115-22'
+
+# メール送信者
+mailer_sender: "rails.dev0115@gmail.com"
