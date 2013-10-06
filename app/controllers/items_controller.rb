@@ -4,11 +4,6 @@ class ItemsController < ApplicationController
 
   # GET /items
   def index(category_id, star)
-    begin
-      raise
-    rescue Exception => e
-      ExceptionNotifier.notify_exception(e, env: request.env, data: { message: "was doing something wrong" })
-    end
     @items = Item.mine(current_user)
     @items.where!(category_id: category_id) if category_id.present?
     @items.where!(star: star)               if star.present?
