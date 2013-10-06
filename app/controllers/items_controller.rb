@@ -3,8 +3,13 @@ class ItemsController < ApplicationController
   permits :user_id, :category_id, :content_id, :star, :name, :done_date
 
   # GET /items
-  def index
-    @items = Item.mine(current_user).all
+  def index(category_id, star)
+    @items = Item.mine(current_user)
+    @items.where!(category_id: category_id) if category_id.present?
+    @items.where!(star: star)               if star.present?
+
+    @category_id = category_id
+    @star        = star
   end
 
   # GET /items/1

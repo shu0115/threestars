@@ -9,4 +9,11 @@ class Item < ActiveRecord::Base
   def star_display
     ('★' * self.star) + '：' + Settings.star[self.star]
   end
+
+  private
+
+  # スター表示
+  def self.star_display(star)
+    ('★' * star) + '：' + Settings.star[star]
+  end
 end
