@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new
+    @item = Item.new(star: 0, category_id: Category.find_by(name: 'その他').try(:id))
   end
 
   # GET /items/1/edit
