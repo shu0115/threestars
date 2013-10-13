@@ -4,7 +4,8 @@ class ItemsController < ApplicationController
 
   # GET /items
   def index(category_id, star)
-    @items = Item.mine(current_user)
+    @item = Item.new(star: 0, category_id: Category.find_by(name: 'その他').try(:id))
+    @items = Item.mine(current_user).order(done_date: :desc)
     @items.where!(category_id: category_id) if category_id.present?
     @items.where!(star: star)               if star.present?
 
@@ -12,15 +13,15 @@ class ItemsController < ApplicationController
     @star        = star
   end
 
-  # GET /items/1
-  def show(id)
-    @item = Item.mine(current_user).find_by(id: id)
-  end
+  # # GET /items/1
+  # def show(id)
+  #   @item = Item.mine(current_user).find_by(id: id)
+  # end
 
-  # GET /items/new
-  def new
-    @item = Item.new(star: 0, category_id: Category.find_by(name: 'その他').try(:id))
-  end
+  # # GET /items/new
+  # def new
+  #   @item = Item.new(star: 0, category_id: Category.find_by(name: 'その他').try(:id))
+  # end
 
   # GET /items/1/edit
   def edit(id)

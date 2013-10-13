@@ -1,0 +1,25 @@
+- if item.errors.any?
+  #error_explanation
+    %h2= "#{pluralize(item.errors.count, "error")} prohibited this item from being saved:"
+    %ul
+      - item.errors.full_messages.each do |msg|
+        %li= msg
+.field
+  = f.label :name, 'コンテンツ名'
+  = f.text_field :name, size: 50
+
+.field
+  = f.label :category_id, 'カテゴリ：'
+  - Category.all.each do |category|
+    = f.radio_button :category_id, category.id,{ checked: (item.category_id == category.id) }
+    = f.label "category_id_#{category.id}", category.name
+
+.field
+  = f.label :star, '評価：'
+  - (0..3).each do |rank|
+    = f.radio_button :star, rank,{ checked: (item.star == rank) }
+    = f.label "star_#{rank}", ('☆' * rank) + '：' + Settings.star[rank]
+
+.field
+  = f.label :done_date, '完了日'
+  = f.date_select :done_date
